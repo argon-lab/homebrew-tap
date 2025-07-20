@@ -1,8 +1,8 @@
 class Argonctl < Formula
   desc "Git-like MongoDB branching for ML/AI workflows"
   homepage "https://github.com/argon-lab/argon"
-  url "https://api.github.com/repos/argon-lab/argon/tarball/v1.0.0"
-  sha256 "b889227bbab566b61b9b865612af04e9a2a0d95e9686f1bb60e6b0ff68f16149"
+  url "https://api.github.com/repos/argon-lab/argon/tarball/v1.0.1"
+  sha256 "09b928deb6f12b62b0c0d9515c8ad4e293e3064b68d01f3849eb1bb83626dad4"
   license "MIT"
   head "https://github.com/argon-lab/argon.git", branch: "main"
 
