@@ -1,10 +1,10 @@
 class Argonctl < Formula
-  desc "Git-like MongoDB branching for ML/AI workflows"
+  desc "Git for MongoDB: branch, time-travel, merge and undo with real drivers"
   homepage "https://github.com/argon-lab/argon"
-  url "https://api.github.com/repos/argon-lab/argon/tarball/v1.0.1"
-  sha256 "09b928deb6f12b62b0c0d9515c8ad4e293e3064b68d01f3849eb1bb83626dad4"
+  url "https://github.com/argon-lab/argon/archive/refs/tags/v2.0.0.tar.gz"
+  sha256 "67edcce8dae488f976c6c2747bb6a806dce87afb0686edd9c2508b183696ce88"
   license "MIT"
-  head "https://github.com/argon-lab/argon.git", branch: "main"
+  head "https://github.com/argon-lab/argon.git", branch: "master"
 
   depends_on "go" => :build
 
