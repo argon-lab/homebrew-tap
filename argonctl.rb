@@ -1,8 +1,8 @@
 class Argonctl < Formula
-  desc "Git for MongoDB: branch, time-travel, merge and undo with real drivers"
+  desc "MongoDB sandboxes for AI agents: branch, review, merge and undo your data"
   homepage "https://github.com/argon-lab/argon"
-  url "https://github.com/argon-lab/argon/archive/refs/tags/v2.2.0.tar.gz"
-  sha256 "6c5a69b4141a10729c0f4e2c76b41dd74679aeb71eb92fc3c1586a889832d01a"
+  url "https://github.com/argon-lab/argon/archive/refs/tags/v2.3.0.tar.gz"
+  sha256 "014819c1e84fee2b3e3ce87561e76ccc6334e19b381159ceb9f4914fcb19e464"
   license "MIT"
   head "https://github.com/argon-lab/argon.git", branch: "master"
 
