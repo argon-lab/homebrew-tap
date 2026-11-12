@@ -1,8 +1,8 @@
 class Argonctl < Formula
   desc "MongoDB sandboxes for AI agents: branch, review, merge and undo your data"
   homepage "https://github.com/argon-lab/argon"
-  url "https://github.com/argon-lab/argon/archive/refs/tags/v2.3.1.tar.gz"
-  sha256 "9a778d461cf8eb8154d9841c2cd484a55ff06214ea5dc3318e9e64d1f5666260"
+  url "https://github.com/argon-lab/argon/archive/refs/tags/v2.3.2.tar.gz"
+  sha256 "02eb779bcef76361cd04de17022c45b388a6e698d63178066865dacf016593b8"
   license "MIT"
   head "https://github.com/argon-lab/argon.git", branch: "master"
 
