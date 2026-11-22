@@ -21,4 +21,6 @@ curl -sL "https://github.com/argon-lab/argon/archive/refs/tags/v${VERSION}.tar.g
 brew install --build-from-source ./argonctl.rb && brew test argonctl
 ```
 
+The [Formula](.github/workflows/formula.yml) workflow runs `brew style`, `brew audit --strict --online`, a build from source, `brew test` and `brew livecheck` on macOS and Linux for every pull request and every week.
+
 Issues with Argon itself belong in [argon-lab/argon](https://github.com/argon-lab/argon/issues).

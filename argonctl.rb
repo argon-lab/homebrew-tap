@@ -6,20 +6,23 @@ class Argonctl < Formula
   license "MIT"
   head "https://github.com/argon-lab/argon.git", branch: "master"
 
+  livecheck do
+    url :stable
+    strategy :github_latest
+  end
+
   depends_on "go" => :build
 
   def install
     cd "cli" do
       ldflags = "-s -w -X github.com/argon-lab/argon/v2/pkg/version.Build=#{version}"
-      system "go", "build", *std_go_args(ldflags: ldflags), "-o", bin/"argon"
-      # Create argonctl symlink for convenience
-      bin.install_symlink "argon" => "argonctl"
+      system "go", "build", *std_go_args(ldflags:, output: bin/"argon")
     end
+    bin.install_symlink "argon" => "argonctl"
   end
 
   test do
-    system "#{bin}/argon", "--version"
-    system "#{bin}/argonctl", "--version"
     assert_match "argon version #{version}", shell_output("#{bin}/argon --version")
+    assert_match "argon version #{version}", shell_output("#{bin}/argonctl --version")
   end
 end
