@@ -1,0 +1,46 @@
+name: Formula
+# Style, strict audit, build from source and the formula's own test, on
+# macOS and Linux. Runs on every pull request, on pushes to main and weekly,
+# so a change in Homebrew or Go that breaks the build shows up.
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "23 7 * * 1"
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: formula-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  check:
+    name: Audit, build and test (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    env:
+      HOMEBREW_NO_AUTO_UPDATE: "1"
+      HOMEBREW_NO_INSTALL_CLEANUP: "1"
+    steps:
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@61b401267256bb9c047d6d1481b176d5772a0ba7 # main
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Use this checkout as the argon-lab/tap tap
+        run: |
+          tap="$(brew --repository)/Library/Taps/argon-lab/homebrew-tap"
+          rm -rf "$tap"
+          mkdir -p "$(dirname "$tap")"
+          ln -s "$GITHUB_WORKSPACE" "$tap"
+          brew trust argon-lab/tap 2>/dev/null || true
+      - run: brew style argon-lab/tap
+      - run: brew audit --strict --online --formula argon-lab/tap/argonctl
+      - run: brew install --build-from-source argon-lab/tap/argonctl
+      - run: brew test argon-lab/tap/argonctl
+      - run: brew livecheck argon-lab/tap/argonctl
